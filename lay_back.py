@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def reynolds_number(rho, v, L_char, mu):
     return rho * v * L_char / mu
-hhhhhh
+
 
 def calculate_layback(
         rho, v, mu, g, m,
@@ -78,7 +78,7 @@ S_cyl_sonar = np.pi * D_sonar * L_sonar  # m²
 S_sphere_cable = np.pi * D_cable**2  # m²
 S_cyl_cable = np.pi * D_cable * L_cable  # m²
 n = 1000  # Nombre de tronçons
-d = 4.0 #g/m
+d = 4.0 / 1000 #g/m
 
 # Tensions initiales
 Tx = 0.5 * rho * (v ** 2) * (Cp_sphere_sonar * S_sphere_sonar + Cf_cyl_sonar * S_cyl_sonar)
@@ -89,7 +89,7 @@ print(f"Tx : {Tx}, Ty : {Ty}")
 # Conditions initiales
 alpha_1 = np.pi/2 - np.arctan2(Ty,Tx)
 Fx_1 = - Tx  # N
-Fy_1 = - Ty  # N
+Fy_1 =  Ty  # N
 
 print(f"alpha_1 = {alpha_1* 180 / np.pi}")
 
