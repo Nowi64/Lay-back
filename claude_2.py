@@ -380,6 +380,6 @@ print("Les graphiques montrent l'influence de chaque paramètre sur le comportem
 print("Observations principales:")
 print("- La vitesse augmente significativement le layback")
 print("- La longueur du câble augmente le layback de façon quasi-linéaire")
-print("- L'angle initial a un effet significatif sur le profil: de 0° (horizontal) à 90° (vertical)")
+print("- L'angle initial a un effet assez faible sur le profil: de 0° (horizontal) à 90° (vertical)")
 print(f"- Plage de layback: {min(laybacks_all_angles):.1f}m à {max(laybacks_all_angles):.1f}m")
 print(f"- Plage de profondeur: {min(depths_all_angles):.1f}m à {max(depths_all_angles):.1f}m")
