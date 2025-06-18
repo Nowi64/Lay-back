@@ -43,7 +43,7 @@ def calculate_layback(
 
         delta_Fy = (
             0.5 * rho * np.pi * D_cable * deltaL * v ** 2 * cos_alpha * sin_alpha * (-Cp_cable * cos_alpha + Cf_cable * sin_alpha)
-            + g * deltaL * ((rho * np.pi * D_cable ** 2) / 4 - d)
+            - g * deltaL * ((rho * np.pi * D_cable ** 2) / 4 - d)
         )
 
         Fx_next =Fx[-1] - delta_Fx
@@ -60,7 +60,7 @@ def calculate_layback(
 # === Paramètres ===
 rho = 1027  # kg/m³
 mu = ((1.89 + 0.8) / 2 ) * 1e-3  # Pa.s.
-v = (1.54 + 2.06) / 2  # m/s
+v = 1.54 # m/s
 g = 9.81  # m/s²
 w = 6.7  # kg. masse du sonar immergé dans l'eau
 
@@ -69,9 +69,13 @@ Cf_cable = 0.004
 D_sonar = 0.06  # m
 D_cable = 0.00630  # m
 L_sonar = 0.850  # m
-L_cable = 50  # m
+
+L_cable = 150  # m
 Cp_sphere_sonar = 0.6
 Cf_cyl_sonar = 0.003
+
+
+
 S_sphere_sonar = np.pi * D_sonar**2
 S_cyl_sonar = np.pi * D_sonar * L_sonar
 n = 10000
