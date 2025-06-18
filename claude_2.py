@@ -42,7 +42,7 @@ def calculate_layback(
         delta_Fy = (
                 0.5 * rho * np.pi * D_cable * deltaL * v ** 2 * cos_alpha * sin_alpha * (
                     -Cp_cable * cos_alpha + Cf_cable * sin_alpha)
-                + g * deltaL * ((rho * np.pi * D_cable ** 2) / 4 - d)
+                - g * deltaL * ((rho * np.pi * D_cable ** 2) / 4 - d)
         )
 
         Fx_next = Fx[-1] - delta_Fx
