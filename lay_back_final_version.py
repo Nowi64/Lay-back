@@ -9,8 +9,8 @@ def find_alpha(Fx_i, Fy_i, g, rho, D_cable, d, deltaL, Cp, V):
     def equation(alpha):
         return (
             Fy_i * np.sin(alpha) -
-            Fx_i * np.cos(alpha) +
-            0.5 * g * deltaL * ((rho * np.pi * D_cable ** 2) / 4 - d) -
+            Fx_i * np.cos(alpha) -
+            0.5 * g * deltaL * np.sin(alpha) * ((rho * np.pi * D_cable ** 2) / 4 - d) +
             0.25 * rho * Cp * D_cable * V ** 2 * np.cos(alpha) ** 2
         )
     alpha_guess = np.pi / 4
@@ -59,10 +59,10 @@ def calculate_layback(
 
 # === Paramètres ===
 rho = 1027  # kg/m³
-mu = ((1.89 + 0.8) / 2 ) * 1e-3  # Pa.s
-v = 2.57 # m/s
+mu = ((1.89 + 0.8) / 2 ) * 1e-3  # Pa.s.
+v = (1.54 + 2.06) / 2  # m/s
 g = 9.81  # m/s²
-m = 6.7  # kg
+w = 6.7  # kg. masse du sonar immergé dans l'eau
 
 Cp_cable = 1.1
 Cf_cable = 0.004
@@ -75,11 +75,11 @@ Cf_cyl_sonar = 0.003
 S_sphere_sonar = np.pi * D_sonar**2
 S_cyl_sonar = np.pi * D_sonar * L_sonar
 n = 10000
-d = 40 / 1000  # kg/m (converti depuis g/m)
+d = 40 / 1000  # kg/m (converti depuis g/m). densité linérique du câble
 
 # Tensions initiales
 Tx = 0.5 * rho * v ** 2 * (Cp_sphere_sonar * S_sphere_sonar + Cf_cyl_sonar * S_cyl_sonar)
-Ty = m * g
+Ty = w * g
 print(f"Tx : {Tx:.2f} N, Ty : {Ty:.2f} N")
 
 alpha_1 = np.pi / 2 - np.arctan2(Ty, Tx)
@@ -88,7 +88,7 @@ Fy_1 = -Ty
 print(f"alpha_1 = {np.degrees(alpha_1):.2f}°")
 
 Fx, Fy, alpha = calculate_layback(
-    rho, v, mu, g, m,
+    rho, v, mu, g, w,
     Cp_sphere_sonar, Cf_cyl_sonar, S_sphere_sonar, S_cyl_sonar,
     Cp_cable, Cf_cable, D_sonar, D_cable, L_cable, n, d,
     alpha_1, Fx_1, Fy_1
