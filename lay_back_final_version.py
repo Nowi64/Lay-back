@@ -59,7 +59,7 @@ def calculate_layback(
 # === Paramètres ===
 rho = 1027  # kg/m³
 mu = ((1.89 + 0.8) / 2 ) * 1e-3  # Pa.s.
-v = (1.54 + 2.06) / 2  # m/s
+v = 2.57  # m/s
 g = 9.81  # m/s²
 w = 6.7  # kg. masse du sonar immergé dans l'eau
 
@@ -68,13 +68,13 @@ Cf_cable = 0.004
 D_sonar = 0.06  # m
 D_cable = 0.00630  # m
 L_sonar = 0.850  # m
-L_cable = 50  # m
+L_cable = 150  # m
 Cp_sphere_sonar = 0.6
 Cf_cyl_sonar = 0.003
 S_sphere_sonar = np.pi * D_sonar**2
 S_cyl_sonar = np.pi * D_sonar * L_sonar
 n = 10000
-d = 40 / 1000  # kg/m (converti depuis g/m). densité linérique du câble
+d = 40 / 1000  # kg/m (converti depuis g/m). densité linéique du câble
 
 # Tensions initiales
 Tx = 0.5 * rho * v ** 2 * (Cp_sphere_sonar * S_sphere_sonar + Cf_cyl_sonar * S_cyl_sonar)
